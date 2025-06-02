@@ -1,8 +1,13 @@
 package com.krei.cmelectricpump;
 
+import com.simibubi.create.AllBlocks;
 import com.simibubi.create.AllCreativeModeTabs;
+import com.simibubi.create.AllPartialModels;
 import com.simibubi.create.AllTags;
 import com.simibubi.create.content.fluids.PipeAttachmentModel;
+import com.simibubi.create.content.fluids.pump.PumpBlockEntity;
+import com.simibubi.create.content.fluids.pump.PumpRenderer;
+import com.simibubi.create.content.kinetics.base.SingleAxisRotatingVisual;
 import com.simibubi.create.content.redstone.contact.ContactMovementBehaviour;
 import com.simibubi.create.content.redstone.contact.RedstoneContactBlock;
 import com.simibubi.create.content.redstone.contact.RedstoneContactItem;
@@ -10,6 +15,7 @@ import com.simibubi.create.foundation.data.AssetLookup;
 import com.simibubi.create.foundation.data.BlockStateGen;
 import com.simibubi.create.foundation.data.CreateRegistrate;
 import com.simibubi.create.foundation.data.SharedProperties;
+import com.tterrag.registrate.util.entry.BlockEntityEntry;
 import com.tterrag.registrate.util.entry.BlockEntry;
 import net.minecraft.world.level.material.MapColor;
 import org.slf4j.Logger;
@@ -49,6 +55,12 @@ public class ElectricPump
                 .item()
                 .transform(customItemModel())
                 .register();
+
+    public static final BlockEntityEntry<ElectricPumpBlockEntity> BLOCK_ENTITY = REGISTRATE
+            .blockEntity("electric_pump", ElectricPumpBlockEntity::new)
+            .validBlocks(BLOCK)
+//            .renderer(() -> PumpRenderer::new)
+            .register();
 
     public ElectricPump(IEventBus modEventBus, ModContainer modContainer)
     {
